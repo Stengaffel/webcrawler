@@ -9,20 +9,24 @@ def relevant_title(title, bad_words):
     for word in bad_words:
         match = re.match(word, edited)
         if match:
-            print(title)
-            print(match)
+            #print(title)
+            #print(match)
             return False
     
     return True
 
 def main():
-    search_terms = ['thesis', 'ex-job', 'ex jobb', 'thesis']
+    # Strings that will be used in the queries
+    search_terms = ['ex-jobb', 'thesis']
 
     # Words that should not be included in the title
-    bad_words = ['phd', 'postdoc', 'professor', 'trainee']
+    bad_words = ['phd', 'postdoc', 'professor', 'trainee', 'doctoral']
 
     # Set to keep track of duplicates
     title_set = set()
+
+    # Number of bad titles
+    bad_titles = 0
 
     for query in search_terms:
         
@@ -39,15 +43,17 @@ def main():
                 # Handle title
                 title = div.h2.a.text.strip()
 
+                # Check if the title contains bad words
+                if not relevant_title(title, bad_words):
+                    bad_titles += 1
+                    break
+
                 # Check if title has been seen before
                 if title in title_set:
                     break
                 else:
                     title_set.add(title)
 
-                # Check if the title contains bad words
-                if not relevant_title(title, bad_words):
-                    break
                 print(title)
 
                 # Print the company name
@@ -76,7 +82,8 @@ def main():
             else:
                 break
             
-    print(f'{len(title_set) reults found}')
+    print(f'{len(title_set)} relevant articles found')
+    print(f'{bad_titles} irrelevant articles found')
 
 
 if __name__ == '__main__':
