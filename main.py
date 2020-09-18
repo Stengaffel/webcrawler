@@ -25,6 +25,9 @@ def main():
     # Set to keep track of duplicates
     title_set = set()
 
+    # Set for saving the job-entries
+    job_set = set()
+
     # Number of bad titles
     bad_titles = 0
 
@@ -60,18 +63,27 @@ def main():
                 company = div.find(class_ = 'company')
                 if company != []:
                     if company.text != None:
-                        print(company.text.strip())
+                        company = company.text.strip()
                     elif company.a.text != None:
-                        print(company.a.text.strip())
+                        company = company.a.text.strip()
+                    else:
+                        company = ''
+                    print(company)
 
                 # Print the location
                 location = div.find(class_ = 'location accessible-contrast-color-location')
                 if location.text != None:
-                    print(location.text.strip())
+                    location = location.text.strip()
+                else:
+                    location = ''
+                print(location)
 
                 # Print the link
                 link = div.h2.a['href']
-                print(f'https://se.indeed.com{link.strip()}')
+                link = f'https://se.indeed.com{link.strip()}'
+                print(link)
+
+                job_set.add((title, company, location, link))
 
                 print()
             
@@ -84,6 +96,8 @@ def main():
             
     print(f'{len(title_set)} relevant articles found')
     print(f'{bad_titles} irrelevant articles found')
+
+    #addToDatabase(job_set)
 
 
 if __name__ == '__main__':
