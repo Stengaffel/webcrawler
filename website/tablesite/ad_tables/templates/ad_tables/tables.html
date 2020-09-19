@@ -3,53 +3,76 @@
     <head>
         <title>Tables</title>
         <style>
+            p {
+                font-family: Sans-serif;
+            }
+            #top_bar {
+                background-color: #f2f2f2;
+                width: 100%;
+                height: 50px;
+                float: left;
+            }
+            #top_bar p {
+                display: inline-block;
+                margin-left: 40px;
+            }
             .table {
                 width: 100%;
                 table-layout: fixed;
+                border-collapse: collapse;
             }
-
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
             th, td {
+                font-family: Sans-serif;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
                 text-align: left;
-                padding: 8px;
-                border-bottom: 1px solid #ddd;
+                padding: 12px;
+                border: none;
             }
             #date {
-                width: 10%;
+                width: 90px;
             }
             #title {
-                width: 20%;
+                width: 300px;
             }
             #company {
-                width: 10%;
+                width: 100px;
             }
             #location {
-                width: 10%;
+                width: 90px;
             }
             #link {
-                width: 30%;
+                width: 90px;
             }
         </style>
     </head>
     <body>
+        <div id="top_bar">
+            <p><a href="../indeed">Indeed</a></p>
+            <p><a href="../glassdoor">Glassdoor</a></p>
+        </div>
         <table class="table">
             <thead>
                 <tr>
-                    {% for k in header %}
-                    <th>{{k}}</th>
-                    {% endfor %}
+                    <th id="date">{{ header.date }} </th>
+                    <th id="title">{{ header.title }}</div></th>
+                    <th id="company">{{ header.company }}</th>
+                    <th id="location">{{ header.location }}</th>
+                    <th id="link">{{ header.link }}</th>
                 </tr>
             </thead>
             <tbody>
                 {% for r in rows %}
                     <tr>
                         <td id="date">{{ r.date }} </td>
-                        <td id="title">{{ r.title }} </td>
+                        <td id="title"><div>{{ r.title }}</div></td>
                         <td id="company">{{ r.company }}</td>
                         <td id="location">{{ r.location }}</td>
-                        <td id="link">{{ r.link }}</td>
+                        <td id="link"><a href='{{ r.link }}'>link</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

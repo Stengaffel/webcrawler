@@ -16,5 +16,5 @@ CREATE TABLE indeed_ads (
     company         TEXT,
     location        TEXT,
     link            TEXT,
-    PRIMARY KEY (date,title,location)
+    PRIMARY KEY (title,company,location)
 );

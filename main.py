@@ -7,7 +7,7 @@ from indeed import indeed_parse
 def add_to_database(job_set, table):
     conn = sqlite3.connect('ads.sqlite')
 
-    query = f'INSERT INTO {table}(title, company, location, link)\nVALUES '
+    query = f'INSERT OR IGNORE INTO {table}(title, company, location, link)\nVALUES '
 
     # Make an exception for the first iteration
     first_it = True
@@ -16,7 +16,10 @@ def add_to_database(job_set, table):
         else:
             query = query + ',\n'
         query = query + f"('{job[0]}', '{job[1]}', '{job[2]}', '{job[3]}')"
-    query = query + ';'
+
+#    query = query + f"ON DUPLICATE KEY UPDATE 'date' = 'date';"
+    query = query + ";"
+
     print(query)
 
     # Execute the query
