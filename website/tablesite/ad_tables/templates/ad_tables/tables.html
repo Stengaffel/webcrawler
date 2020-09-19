@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tables</title>
+        <style>
+            .table {
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            th, td {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                text-align: left;
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+            #date {
+                width: 10%;
+            }
+            #title {
+                width: 20%;
+            }
+            #company {
+                width: 10%;
+            }
+            #location {
+                width: 10%;
+            }
+            #link {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    {% for k in header %}
+                    <th>{{k}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in rows %}
+                    <tr>
+                        <td id="date">{{ r.date }} </td>
+                        <td id="title">{{ r.title }} </td>
+                        <td id="company">{{ r.company }}</td>
+                        <td id="location">{{ r.location }}</td>
+                        <td id="link">{{ r.link }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
