@@ -1,23 +1,10 @@
 import requests
-import re
 from bs4 import BeautifulSoup
 
-# Check if the title is relevant. True if relevant, false if not                
-def relevant_title(title, bad_words):
-    edited = str(title).lower()
+from help_functions import relevant_title, clean_string
 
-    for word in bad_words:
-        match = re.match(word, edited)
-        if match:
-            return False
-    return True
 
 def indeed_parse(search_terms, bad_words):
-    # Strings that will be used in the queries                                  
-    search_terms = ['ex-jobb', 'thesis']
-
-    # Words that should not be included in the title                            
-    bad_words = ['phd', 'postdoc', 'professor', 'trainee', 'doctoral']
 
     # Set to keep track of duplicates                                           
     title_set = set()
@@ -51,6 +38,7 @@ def indeed_parse(search_terms, bad_words):
                 if title in title_set:
                     break
                 else:
+                    title = clean_string(title)
                     title_set.add(title)
 
                 print(title)
