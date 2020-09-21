@@ -4,6 +4,7 @@
 PRAGMA foreign_keys=OFF;
 
 DROP TABLE IF EXISTS indeed_ads;
+DROP TABLE IF EXISTS linkedin_ads;
 
 PRAGMA foreign_keys=ON;
 
@@ -11,6 +12,16 @@ PRAGMA foreign_keys=ON;
 
 -- Table for the indeed-ads
 CREATE TABLE indeed_ads (
+    date            DATETIME DEFAULT (datetime('now','localtime')),
+    title           TEXT,
+    company         TEXT,
+    location        TEXT,
+    link            TEXT,
+    PRIMARY KEY (title,company,location)
+);
+
+-- Table for the linkedin-ads
+CREATE TABLE linkedin_ads (
     date            DATETIME DEFAULT (datetime('now','localtime')),
     title           TEXT,
     company         TEXT,

@@ -33,11 +33,12 @@ def indeed_parse(search_terms, bad_words):
                 # Check if the title contains bad words                         
                 if not relevant_title(title, bad_words):
                     bad_titles += 1
-                    break
+                    continue
                 # Check if title has been seen before
                 if title in title_set:
-                    break
+                    continue
                 else:
+                    # Clean the string from dangerous characters for the sql
                     title = clean_string(title)
                     title_set.add(title)
 

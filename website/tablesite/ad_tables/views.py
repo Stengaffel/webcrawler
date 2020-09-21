@@ -21,6 +21,6 @@ def createTable(request, table_name):
     rows = [{'date': date, 'title': title, 'company': company,
         'location': location, 'link': link} for (date,title,company,location,link) in c]
 
-    context = { 'header': header, 'rows': rows }
+    context = { 'table_name': table_name, 'header': header, 'rows': rows }
 
     return render(request, 'ad_tables/tables.html', context)

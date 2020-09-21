@@ -2,6 +2,7 @@ import sqlite3
 
 # imports from local files
 from indeed import indeed_parse
+from linkedin import linkedin_parse
 
 # Add ads to database
 def add_to_database(job_set, table):
@@ -37,8 +38,10 @@ def main():
     bad_words = ['phd', 'postdoc', 'professor', 'trainee', 'doctoral']
 
     indeed_ads = indeed_parse(search_terms, bad_words)
-
     add_to_database(indeed_ads,'indeed_ads')
+
+    linkedin_ads = linkedin_parse(search_terms, bad_words)
+    add_to_database(linkedin_ads, 'linkedin_ads')
 
 
 if __name__ == '__main__':
