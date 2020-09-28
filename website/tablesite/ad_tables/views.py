@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.http import HttpResponse
 
 import sqlite3
+import os
 
 def index(request):
     return HttpResponse("Hello, world. You're at the ad_tables index.")
@@ -13,7 +14,7 @@ def createTable(request, table_name):
             'location': 'Location', 'link': 'Link'}
 
     # Connect to the database
-    conn = sqlite3.connect('/home/william/Documents/webcrawler/ads.sqlite')
+    conn = sqlite3.connect('../../ads.sqlite')
 
     c = conn.cursor()
     c.execute(f"SELECT * FROM '{table_name}_ads' ORDER BY date DESC")

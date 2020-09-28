@@ -1,9 +1,9 @@
 #!/bin/bash
 
-python main.py
+python3 main.py
 
 cd website/tablesite
 
 google-chrome 'http://localhost:8000/tables/linkedin'
 
-python manage.py runserver
+python3 manage.py runserver

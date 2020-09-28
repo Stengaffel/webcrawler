@@ -25,7 +25,7 @@ SECRET_KEY = 'fsi_av(sz4b1zhi#xxxyo4rytzd+c@i&no$ytdjmzi3nl30wf3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.60']
 
 
 # Application definition
