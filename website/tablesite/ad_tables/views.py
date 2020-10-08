@@ -14,7 +14,7 @@ def createTable(request, table_name):
             'location': 'Location', 'link': 'Link'}
 
     # Connect to the database
-    conn = sqlite3.connect('../../ads.sqlite')
+    conn = sqlite3.connect('/home/pi/Documents/webcrawler/ads.sqlite')
 
     c = conn.cursor()
     c.execute(f"SELECT * FROM '{table_name}_ads' ORDER BY date DESC")

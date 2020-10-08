@@ -6,7 +6,7 @@ from linkedin import linkedin_parse
 
 # Add ads to database
 def add_to_database(job_set, table):
-    conn = sqlite3.connect('ads.sqlite')
+    conn = sqlite3.connect('/home/pi/Documents/webcrawler/ads.sqlite')
 
     query = f'INSERT OR IGNORE INTO {table}(title, company, location, link)\nVALUES '
 
